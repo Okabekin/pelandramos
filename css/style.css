@@ -316,18 +316,16 @@ section h2 {
 /* Booking */
 .booking { background: var(--bg-alt); }
 
-.booking-placeholder {
+.calendar-embed {
   background: var(--card);
-  border: 1px dashed var(--border);
+  border: 1px solid var(--border);
   border-radius: 14px;
-  padding: 48px;
-  text-align: center;
+  overflow: hidden;
 }
 
-.booking-placeholder p {
-  color: var(--text-muted);
-  margin-bottom: 20px;
-  font-size: 17px;
+.calendar-embed iframe {
+  display: block;
+  border: none;
 }
 
 /* Socials */
