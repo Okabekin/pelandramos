@@ -363,6 +363,13 @@ section h2 {
   font-size: 14px;
 }
 
+.site-footer a {
+  color: var(--text-muted);
+  text-decoration: underline;
+}
+
+.site-footer a:hover { color: var(--violet); }
+
 .footer-disclaimer {
   max-width: 640px;
   margin: 12px auto 0;
@@ -372,6 +379,37 @@ section h2 {
 }
 
 /* Responsive */
+/* Legal pages */
+.legal {
+  padding: 140px 0 96px;
+}
+
+.legal .container {
+  max-width: 720px;
+}
+
+.legal h1 {
+  font-size: clamp(32px, 5vw, 44px);
+  margin-bottom: 8px;
+}
+
+.legal h2 {
+  font-size: 20px;
+  margin-top: 36px;
+  margin-bottom: 10px;
+  color: var(--violet);
+}
+
+.legal p {
+  color: var(--text-muted);
+  font-size: 15px;
+}
+
+.legal a {
+  color: var(--toxic);
+  text-decoration: underline;
+}
+
 @media (max-width: 720px) {
   .nav-toggle { display: flex; }
 
