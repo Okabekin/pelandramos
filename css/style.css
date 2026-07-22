@@ -128,6 +128,12 @@ section h2 {
   padding: 140px 0 120px;
   overflow: hidden;
   text-align: center;
+  background:
+    linear-gradient(180deg, rgba(10, 8, 18, 0.55) 0%, rgba(10, 8, 18, 0.88) 65%, var(--bg) 100%),
+    linear-gradient(90deg, rgba(10, 8, 18, 0.75) 0%, rgba(10, 8, 18, 0.2) 40%, rgba(10, 8, 18, 0.2) 60%, rgba(10, 8, 18, 0.75) 100%),
+    url('../images/splashart.jpg');
+  background-size: cover;
+  background-position: center 20%;
 }
 
 .hero-glow {
@@ -357,6 +363,14 @@ section h2 {
   text-align: center;
   color: var(--text-muted);
   font-size: 14px;
+}
+
+.footer-disclaimer {
+  max-width: 640px;
+  margin: 12px auto 0;
+  font-size: 12px;
+  color: #6b6280;
+  line-height: 1.5;
 }
 
 /* Responsive */
