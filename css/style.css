@@ -255,6 +255,26 @@ section h2 {
   font-size: 14px;
 }
 
+/* Video */
+.video-embed {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.video-embed iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
 /* Coaching package */
 .package-card {
   background: var(--card);
