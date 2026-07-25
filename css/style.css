@@ -380,10 +380,57 @@ section h2 {
   line-height: 1.5;
 }
 
-.rune-alt-label {
+/* Switchable secondary tree */
+.tree-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.tree-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
   color: var(--text-muted);
-  font-size: 14px;
-  margin: 24px 0 14px;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 15px;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.tree-tab img {
+  width: 22px;
+  height: 22px;
+  opacity: 0.45;
+  transition: opacity 0.15s;
+}
+
+.tree-tab:hover { color: var(--text); }
+.tree-tab:hover img { opacity: 0.8; }
+
+.tree-tab.active {
+  color: var(--text);
+  background: var(--bg-alt);
+  border-color: var(--violet);
+}
+
+.tree-tab.active img { opacity: 1; }
+
+.tree-panel { display: none; }
+.tree-panel.active { display: block; }
+
+.tree-note {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 10px;
 }
 
 /* Two runes from the same row, shown as alternatives */

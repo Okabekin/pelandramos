@@ -100,25 +100,57 @@
         </div>
 
         <div class="rune-column">
-          <div class="rune-tree-header">
-            <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png" alt="Precision">
-            <span>Precision</span>
+          <div class="tree-tabs" role="tablist" aria-label="Secondary rune tree">
+            <button class="tree-tab active" role="tab" aria-selected="true" data-tree="precision">
+              <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png" alt="">
+              <span>Precision</span>
+            </button>
+            <button class="tree-tab" role="tab" aria-selected="false" data-tree="inspiration">
+              <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7203_Whimsy.png" alt="">
+              <span>Inspiration</span>
+            </button>
           </div>
-          <div class="rune-item rune-expandable" tabindex="0" role="button" aria-expanded="false">
-            <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/LegendAlacrity/LegendAlacrity.png" alt="Legend: Alacrity">
-            <span>Legend: Alacrity</span>
-            <span class="rune-toggle-icon">+</span>
+
+          <div class="tree-panel active" role="tabpanel" data-tree="precision">
+            <div class="rune-item rune-expandable" tabindex="0" role="button" aria-expanded="false">
+              <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/LegendAlacrity/LegendAlacrity.png" alt="Legend: Alacrity">
+              <span>Legend: Alacrity</span>
+              <span class="rune-toggle-icon">+</span>
+            </div>
+            <div class="rune-detail">
+              <p>Really nice attack speed. Shaco is an auto-attack based champ, so this is great and feels great &ndash; especially since I don't upgrade boots anymore (no more Berserker's Greaves).</p>
+            </div>
+            <div class="rune-item rune-expandable" tabindex="0" role="button" aria-expanded="false">
+              <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/CutDown/CutDown.png" alt="Cut Down">
+              <span>Cut Down</span>
+              <span class="rune-toggle-icon">+</span>
+            </div>
+            <div class="rune-detail">
+              <p>Goated rune. It gives you nice damage at all stages of the game. Shaco's main damage is the first Q backstab, so amplifying that is great &ndash; and it scales surprisingly well.</p>
+            </div>
           </div>
-          <div class="rune-detail">
-            <p>Really nice attack speed. Shaco is an auto-attack based champ, so this is great and feels great &ndash; especially since I don't upgrade boots anymore (no more Berserker's Greaves).</p>
-          </div>
-          <div class="rune-item rune-expandable" tabindex="0" role="button" aria-expanded="false">
-            <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/CutDown/CutDown.png" alt="Cut Down">
-            <span>Cut Down</span>
-            <span class="rune-toggle-icon">+</span>
-          </div>
-          <div class="rune-detail">
-            <p>Goated rune. It gives you nice damage at all stages of the game. Shaco's main damage is the first Q backstab, so amplifying that is great &ndash; and it scales surprisingly well.</p>
+
+          <div class="tree-panel" role="tabpanel" data-tree="inspiration">
+            <p class="tree-note">I sometimes go Inspiration instead of Precision &ndash; also very viable.</p>
+            <div class="rune-item">
+              <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Inspiration/MagicalFootwear/MagicalFootwear.png" alt="Magical Footwear">
+              <span>Magical Footwear</span>
+            </div>
+            <div class="rune-alt-row">
+              <div class="rune-alt">
+                <div class="rune-item">
+                  <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Inspiration/CosmicInsight/CosmicInsight.png" alt="Cosmic Insight">
+                  <span>Cosmic Insight</span>
+                </div>
+              </div>
+              <span class="rune-alt-or">or</span>
+              <div class="rune-alt">
+                <div class="rune-item">
+                  <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Resolve/ApproachVelocity/ApproachVelocity.png" alt="Approach Velocity">
+                  <span>Approach Velocity</span>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="rune-shards">
@@ -133,35 +165,6 @@
             <div class="rune-item rune-shard">
               <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/StatMods/StatModsHealthPlusIcon.png" alt="Flat Health">
               <span>Flat HP</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <p class="rune-alt-label">Alternative secondary tree &ndash; I sometimes go Inspiration instead of Precision. Also very viable.</p>
-      <div class="rune-page">
-        <div class="rune-column">
-          <div class="rune-tree-header">
-            <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7203_Whimsy.png" alt="Inspiration">
-            <span>Inspiration</span>
-          </div>
-          <div class="rune-item">
-            <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Inspiration/MagicalFootwear/MagicalFootwear.png" alt="Magical Footwear">
-            <span>Magical Footwear</span>
-          </div>
-          <div class="rune-alt-row">
-            <div class="rune-alt">
-              <div class="rune-item">
-                <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Inspiration/CosmicInsight/CosmicInsight.png" alt="Cosmic Insight">
-                <span>Cosmic Insight</span>
-              </div>
-            </div>
-            <span class="rune-alt-or">or</span>
-            <div class="rune-alt">
-              <div class="rune-item">
-                <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Resolve/ApproachVelocity/ApproachVelocity.png" alt="Approach Velocity">
-                <span>Approach Velocity</span>
-              </div>
             </div>
           </div>
         </div>

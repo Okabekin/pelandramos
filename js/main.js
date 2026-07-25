@@ -28,6 +28,26 @@ document.querySelectorAll('.level-cells[data-active]').forEach(row => {
   }
 });
 
+document.querySelectorAll('.tree-tabs').forEach(tabs => {
+  const column = tabs.parentElement;
+
+  tabs.querySelectorAll('.tree-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const tree = tab.dataset.tree;
+
+      tabs.querySelectorAll('.tree-tab').forEach(t => {
+        const isActive = t === tab;
+        t.classList.toggle('active', isActive);
+        t.setAttribute('aria-selected', isActive);
+      });
+
+      column.querySelectorAll('.tree-panel').forEach(panel => {
+        panel.classList.toggle('active', panel.dataset.tree === tree);
+      });
+    });
+  });
+});
+
 document.querySelectorAll('.rune-expandable').forEach(item => {
   const detail = item.nextElementSibling;
   if (!detail || !detail.classList.contains('rune-detail')) return;
