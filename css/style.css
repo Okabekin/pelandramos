@@ -341,6 +341,36 @@ section h2 {
   .rune-page { grid-template-columns: 1fr; }
 }
 
+.spell-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.spell-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-size: 14px;
+}
+
+.spell-item img {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+}
+
+.spell-plus {
+  color: var(--text-muted);
+  font-family: var(--font-head);
+  font-size: 20px;
+}
+
 /* Video */
 .video-embed {
   position: relative;
