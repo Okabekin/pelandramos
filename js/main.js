@@ -16,3 +16,14 @@ if (navToggle && navLinks) {
     });
   });
 }
+
+document.querySelectorAll('.level-cells[data-active]').forEach(row => {
+  const active = row.dataset.active.split(',').map(n => n.trim());
+  for (let level = 1; level <= 18; level++) {
+    const cell = document.createElement('span');
+    cell.className = 'level-cell';
+    cell.textContent = level;
+    if (active.includes(String(level))) cell.classList.add('active');
+    row.appendChild(cell);
+  }
+});
