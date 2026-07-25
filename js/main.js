@@ -27,3 +27,22 @@ document.querySelectorAll('.level-cells[data-active]').forEach(row => {
     row.appendChild(cell);
   }
 });
+
+document.querySelectorAll('.rune-expandable').forEach(item => {
+  const detail = item.nextElementSibling;
+  if (!detail || !detail.classList.contains('rune-detail')) return;
+
+  const toggle = () => {
+    const isOpen = item.classList.toggle('open');
+    detail.classList.toggle('open', isOpen);
+    item.setAttribute('aria-expanded', isOpen);
+  };
+
+  item.addEventListener('click', toggle);
+  item.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggle();
+    }
+  });
+});
