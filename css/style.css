@@ -380,6 +380,12 @@ section h2 {
   line-height: 1.5;
 }
 
+.rune-alt-label {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin: 24px 0 14px;
+}
+
 /* Two runes from the same row, shown as alternatives */
 .rune-alt-row {
   display: flex;
