@@ -646,6 +646,7 @@ section h2 {
 
 /* Splits one connector into several branches */
 .build-branch {
+  --row-h: 52px;   /* every row is this tall, which is what keeps the trunk exact */
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -654,12 +655,16 @@ section h2 {
      Painted as a background so the branch needs no positioning of its own,
      which keeps the column labels anchored to the top of the tree. */
   background: linear-gradient(var(--border), var(--border)) no-repeat;
-  background-size: 2px calc(100% - 52px);
-  background-position: 0 26px;
+  background-size: 2px calc(100% - var(--row-h));
+  background-position: 0 calc(var(--row-h) / 2);
 }
 
 .build-branch-row {
   position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: var(--row-h);
 }
 
 /* Horizontal stub from the trunk to each node */
@@ -667,10 +672,35 @@ section h2 {
   content: "";
   position: absolute;
   left: -36px;
-  top: 26px;
+  top: calc(var(--row-h) / 2);
   width: 36px;
   height: 2px;
   background: var(--border);
+}
+
+/* Notes explain when to take each option, so they only show
+   while that column is still being chosen */
+.build-note { display: none; }
+
+/* Keep --row-h at or above the tallest note, otherwise a row grows past it
+   and the trunk no longer lines up with the first and last icon */
+.build-branch.has-notes:not(.collapsed) { --row-h: 132px; }
+
+.build-branch.has-notes:not(.collapsed) .build-note {
+  display: block;
+  width: 360px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.build-note strong {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--text);
+  font-family: var(--font-head);
+  font-size: 14px;
+  letter-spacing: 0.02em;
 }
 
 [hidden] { display: none !important; }
