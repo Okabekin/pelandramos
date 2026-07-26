@@ -43,9 +43,13 @@ if (buildTree) {
     6698: { name: 'Profane Hydra' },
     3814: { name: 'Edge of Night' },
     // Only worth building once one of the crit-based armour pen items is up
-    3031: { name: 'Infinity Edge', requires: ['3036', '3033'] }
+    3031: { name: 'Infinity Edge', requires: ['3036', '3033'] },
+    3046: { name: 'Phantom Dancer' }
   };
   const POOL = ['3036', '6694', '3033', '3142', '6698', '3814', '3031'];
+  const FINAL_ITEM = '3046';   // the 6th slot is fixed, bought by selling boots
+
+  const iconUrl = id => `https://ddragon.leagueoflegends.com/cdn/${PATCH}/img/item/${id}.png`;
 
   const slot3 = document.getElementById('slot3');
   const hint = document.getElementById('buildHint');
@@ -62,6 +66,17 @@ if (buildTree) {
     links.push(link);
     branches.push(branch);
   }
+
+  // Fixed final node, shown once every choice above it has been made
+  const finalLink = document.createElement('span');
+  finalLink.className = 'build-link';
+  const finalBranch = document.createElement('div');
+  finalBranch.className = 'build-branch collapsed';
+  finalBranch.innerHTML =
+    `<div class="build-branch-row"><div class="build-node">` +
+    `<img src="${iconUrl(FINAL_ITEM)}" alt="${ITEMS[FINAL_ITEM].name}" ` +
+    `title="${ITEMS[FINAL_ITEM].name} (sell your boots)"></div></div>`;
+  buildTree.append(finalLink, finalBranch);
 
   const ordinal = slot => slot + (slot === 3 ? 'rd' : 'th');
 
@@ -96,7 +111,7 @@ if (buildTree) {
     button.addEventListener('click', () => choose(index, id));
 
     const img = document.createElement('img');
-    img.src = `https://ddragon.leagueoflegends.com/cdn/${PATCH}/img/item/${id}.png`;
+    img.src = iconUrl(id);
     img.alt = ITEMS[id].name;
     img.title = ITEMS[id].name;
 
@@ -131,13 +146,18 @@ if (buildTree) {
       branch.classList.toggle('collapsed', Boolean(picked));
     });
 
+    const complete = picks.length >= branches.length;
+    finalLink.hidden = !complete;
+    finalBranch.hidden = !complete;
+
     const nextSlot = picks.length + 3;
     if (picks.length === 0) {
       hint.textContent = 'Pick a 3rd item to see your 4th item options.';
     } else if (nextSlot <= LAST_SLOT) {
       hint.textContent = `Now pick your ${ordinal(nextSlot)} item.`;
     } else {
-      hint.textContent = 'Click any item in the path to change it from there.';
+      hint.textContent = 'The 6th item is always Phantom Dancer – sell your boots for it. ' +
+        'Click any item in the path to change it from there.';
     }
   };
 
