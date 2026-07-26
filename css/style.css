@@ -684,7 +684,7 @@ section h2 {
 
 /* Keep --row-h at or above the tallest note, otherwise a row grows past it
    and the trunk no longer lines up with the first and last icon */
-.build-branch.has-notes:not(.collapsed) { --row-h: 132px; }
+.build-branch.has-notes:not(.collapsed) { --row-h: 140px; }
 
 .build-branch.has-notes:not(.collapsed) .build-note {
   display: block;

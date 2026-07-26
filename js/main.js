@@ -34,14 +34,42 @@ if (buildTree) {
   const PATCH = '16.14.1';
   const LAST_SLOT = 5;
 
-  // Items sharing a group build out of the same component, so only one can be owned
+  // Items sharing a group build out of the same component, so only one can be owned.
+  // Notes describe picking that item as the 4th item specifically (they're only
+  // ever shown while the 4th item column is open, see the has-notes branch below).
   const ITEMS = {
-    3036: { name: "Lord Dominik's Regards", group: 'lastwhisper' },
-    6694: { name: "Serylda's Grudge", group: 'lastwhisper' },
-    3033: { name: 'Mortal Reminder', group: 'lastwhisper' },
+    3036: {
+      name: "Lord Dominik's Regards", group: 'lastwhisper',
+      note: "Usually you need armor pen as a 4th item because the enemy already bought " +
+        "armor, or their base armor is high enough to make this good on its own. Go LDR " +
+        "if the enemy has a lot of HP and you're planning to build into the Infinity Edge " +
+        "power spike later &ndash; so when you know the game will run long and you'll want " +
+        "that crit power spike."
+    },
+    6694: {
+      name: "Serylda's Grudge", group: 'lastwhisper',
+      note: "Serylda's is the stronger immediate power spike compared to LDR. It's 300 " +
+        "gold cheaper and gives 10 more AD. Worth considering especially when you're not " +
+        "playing into high-HP targets."
+    },
+    3033: {
+      name: 'Mortal Reminder', group: 'lastwhisper',
+      note: "Shaco isn't the best at applying anti-heal, but it's still the right call in " +
+        "some matchups &ndash; if the enemy has insane healing like Soraka or Hecarim. " +
+        "It's my least-bought armor pen item, though."
+    },
     3142: { name: "Youmuu's Ghostblade" },
-    6698: { name: 'Profane Hydra' },
-    3814: { name: 'Edge of Night' },
+    6698: {
+      name: 'Profane Hydra',
+      note: "In some games you're so far ahead that you can afford another lethality item " +
+        "at 4th slot &ndash; you still deal true damage in those scenarios. Profane is a " +
+        "great pick for this."
+    },
+    3814: {
+      name: 'Edge of Night',
+      note: "Similar to Profane, you go Edge of Night 4th when you're really ahead. The " +
+        "spell shield and HP can help solidify your lead and protect you from being shut down."
+    },
     // Only worth building once one of the crit-based armour pen items is up
     3031: { name: 'Infinity Edge', requires: ['3036', '3033'] },
     3046: { name: 'Phantom Dancer' }
@@ -69,7 +97,8 @@ if (buildTree) {
     const link = document.createElement('span');
     link.className = 'build-link';
     const branch = document.createElement('div');
-    branch.className = 'build-branch';
+    // Only the 4th item column has notes written for it so far
+    branch.className = slot === 4 ? 'build-branch has-notes' : 'build-branch';
     const label = makeLabel(slot);
     branch.append(label);
     buildTree.append(link, branch);
@@ -129,6 +158,14 @@ if (buildTree) {
 
     button.append(img);
     row.append(button);
+
+    if (ITEMS[id].note) {
+      const note = document.createElement('p');
+      note.className = 'build-note';
+      note.innerHTML = `<strong>${ITEMS[id].name}</strong>${ITEMS[id].note}`;
+      row.append(note);
+    }
+
     return row;
   };
 
