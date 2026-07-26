@@ -58,7 +58,12 @@ if (buildTree) {
         "some matchups &ndash; if the enemy has insane healing like Soraka or Hecarim. " +
         "It's my least-bought armor pen item, though."
     },
-    3142: { name: "Youmuu's Ghostblade" },
+    3142: {
+      name: "Youmuu's Ghostblade",
+      note: "Great as a 4th item if you're snowballing hard enough to afford another " +
+        "lethality item. The movement speed is always nice to have, but can be mandatory " +
+        "into certain comps just so you can actually reach them reliably."
+    },
     6698: {
       name: 'Profane Hydra',
       note: "In some games you're so far ahead that you can afford another lethality item " +
@@ -67,8 +72,8 @@ if (buildTree) {
     },
     3814: {
       name: 'Edge of Night',
-      note: "Similar to Profane, you go Edge of Night 4th when you're really ahead. The " +
-        "spell shield and HP can help solidify your lead and protect you from being shut down."
+      note: "You go Edge of Night 4th when you're really ahead. The spell shield and HP " +
+        "can help solidify your lead and protect you from being shut down."
     },
     // Only worth building once one of the crit-based armour pen items is up
     3031: { name: 'Infinity Edge', requires: ['3036', '3033'] },
