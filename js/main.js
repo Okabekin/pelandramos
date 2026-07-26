@@ -36,22 +36,27 @@ if (slot3) {
   const hint = document.getElementById('buildHint');
   const choices = [...slot3.querySelectorAll('.build-choice')];
 
-  const select = item => {
+  const select = picked => {
+    const item = picked ? picked.dataset.item : null;
+    // Items in the same group (e.g. Last Whisper upgrades) can't be stacked
+    const group = picked ? picked.dataset.group : null;
+
     choices.forEach(choice => {
-      const isPicked = choice.dataset.item === item;
+      const isPicked = choice === picked;
       choice.setAttribute('aria-pressed', isPicked);
-      choice.closest('.build-branch-row').hidden = item !== null && !isPicked;
+      choice.closest('.build-branch-row').hidden = picked !== null && !isPicked;
     });
 
-    slot3.classList.toggle('collapsed', item !== null);
-    slot4.hidden = item === null;
-    slot4Link.hidden = item === null;
+    slot3.classList.toggle('collapsed', picked !== null);
+    slot4.hidden = picked === null;
+    slot4Link.hidden = picked === null;
 
     slot4.querySelectorAll('.build-branch-row').forEach(row => {
-      row.hidden = row.dataset.item === item;
+      row.hidden = row.dataset.item === item ||
+        (group !== undefined && group !== null && row.dataset.group === group);
     });
 
-    hint.textContent = item === null
+    hint.textContent = picked === null
       ? 'Pick a 3rd item to see your 4th item options.'
       : 'Click your 3rd item again to change it.';
   };
@@ -59,7 +64,7 @@ if (slot3) {
   choices.forEach(choice => {
     choice.addEventListener('click', () => {
       const alreadyPicked = choice.getAttribute('aria-pressed') === 'true';
-      select(alreadyPicked ? null : choice.dataset.item);
+      select(alreadyPicked ? null : choice);
     });
   });
 }
