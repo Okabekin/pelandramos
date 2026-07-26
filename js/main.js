@@ -28,45 +28,118 @@ document.querySelectorAll('.level-cells[data-active]').forEach(row => {
   }
 });
 
-const slot3 = document.getElementById('slot3');
+const buildTree = document.getElementById('buildTree');
 
-if (slot3) {
-  const slot4 = document.getElementById('slot4');
-  const slot4Link = document.getElementById('slot4Link');
+if (buildTree) {
+  const PATCH = '16.14.1';
+  const LAST_SLOT = 5;
+
+  // Items sharing a group build out of the same component, so only one can be owned
+  const ITEMS = {
+    3036: { name: "Lord Dominik's Regards", group: 'lastwhisper' },
+    6694: { name: "Serylda's Grudge", group: 'lastwhisper' },
+    3033: { name: 'Mortal Reminder', group: 'lastwhisper' },
+    3142: { name: "Youmuu's Ghostblade" },
+    6698: { name: 'Profane Hydra' },
+    3814: { name: 'Edge of Night' },
+    3031: { name: 'Infinity Edge' }
+  };
+  const POOL = ['3036', '6694', '3033', '3142', '6698', '3814', '3031'];
+
+  const slot3 = document.getElementById('slot3');
   const hint = document.getElementById('buildHint');
-  const choices = [...slot3.querySelectorAll('.build-choice')];
+  const picks = [];            // picks[0] is the 3rd item, picks[1] the 4th, ...
+  const branches = [slot3];
+  const links = [];
 
-  const select = picked => {
-    const item = picked ? picked.dataset.item : null;
-    // Items in the same group (e.g. Last Whisper upgrades) can't be stacked
-    const group = picked ? picked.dataset.group : null;
+  for (let slot = 4; slot <= LAST_SLOT; slot++) {
+    const link = document.createElement('span');
+    link.className = 'build-link';
+    const branch = document.createElement('div');
+    branch.className = 'build-branch';
+    buildTree.append(link, branch);
+    links.push(link);
+    branches.push(branch);
+  }
 
-    choices.forEach(choice => {
-      const isPicked = choice === picked;
-      choice.setAttribute('aria-pressed', isPicked);
-      choice.closest('.build-branch-row').hidden = picked !== null && !isPicked;
-    });
+  const ordinal = slot => slot + (slot === 3 ? 'rd' : 'th');
 
-    slot3.classList.toggle('collapsed', picked !== null);
-    slot4.hidden = picked === null;
-    slot4Link.hidden = picked === null;
-
-    slot4.querySelectorAll('.build-branch-row').forEach(row => {
-      row.hidden = row.dataset.item === item ||
-        (group !== undefined && group !== null && row.dataset.group === group);
-    });
-
-    hint.textContent = picked === null
-      ? 'Pick a 3rd item to see your 4th item options.'
-      : 'Click your 3rd item again to change it.';
+  // An item is unavailable if an earlier slot already took it or its group
+  const takenBefore = (id, depth) => {
+    const earlier = picks.slice(0, depth);
+    if (earlier.includes(id)) return true;
+    const group = ITEMS[id].group;
+    return Boolean(group) && earlier.some(pick => ITEMS[pick].group === group);
   };
 
-  choices.forEach(choice => {
-    choice.addEventListener('click', () => {
-      const alreadyPicked = choice.getAttribute('aria-pressed') === 'true';
-      select(alreadyPicked ? null : choice);
+  const choose = (index, id) => {
+    const wasPicked = picks[index] === id;
+    picks.length = index;      // anything chosen after this slot no longer applies
+    if (!wasPicked) picks[index] = id;
+    render();
+  };
+
+  const makeRow = (index, id) => {
+    const row = document.createElement('div');
+    row.className = 'build-branch-row';
+
+    const button = document.createElement('button');
+    button.className = 'build-node build-choice';
+    button.dataset.item = id;
+    button.setAttribute('aria-pressed', String(picks[index] === id));
+    button.addEventListener('click', () => choose(index, id));
+
+    const img = document.createElement('img');
+    img.src = `https://ddragon.leagueoflegends.com/cdn/${PATCH}/img/item/${id}.png`;
+    img.alt = ITEMS[id].name;
+    img.title = ITEMS[id].name;
+
+    button.append(img);
+    row.append(button);
+    return row;
+  };
+
+  const render = () => {
+    branches.forEach((branch, index) => {
+      const picked = picks[index];
+
+      if (index === 0) {
+        branch.querySelectorAll('.build-choice').forEach(choice => {
+          const isPicked = choice.dataset.item === picked;
+          choice.setAttribute('aria-pressed', String(isPicked));
+          choice.closest('.build-branch-row').hidden = Boolean(picked) && !isPicked;
+        });
+      } else {
+        const reached = picks.length >= index;
+        links[index - 1].hidden = !reached;
+        branch.hidden = !reached;
+
+        if (reached) {
+          branch.replaceChildren(...POOL
+            .filter(id => !takenBefore(id, index))
+            .filter(id => !picked || id === picked)
+            .map(id => makeRow(index, id)));
+        }
+      }
+
+      branch.classList.toggle('collapsed', Boolean(picked));
     });
+
+    const nextSlot = picks.length + 3;
+    if (picks.length === 0) {
+      hint.textContent = 'Pick a 3rd item to see your 4th item options.';
+    } else if (nextSlot <= LAST_SLOT) {
+      hint.textContent = `Now pick your ${ordinal(nextSlot)} item.`;
+    } else {
+      hint.textContent = 'Click any item in the path to change it from there.';
+    }
+  };
+
+  slot3.querySelectorAll('.build-choice').forEach(choice => {
+    choice.addEventListener('click', () => choose(0, choice.dataset.item));
   });
+
+  render();
 }
 
 document.querySelectorAll('.tree-tabs').forEach(tabs => {
