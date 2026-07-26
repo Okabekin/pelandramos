@@ -56,15 +56,26 @@ if (buildTree) {
   const picks = [];            // picks[0] is the 3rd item, picks[1] the 4th, ...
   const branches = [slot3];
   const links = [];
+  const labels = [slot3.querySelector('.build-col-label')];
+
+  const makeLabel = slot => {
+    const label = document.createElement('span');
+    label.className = 'build-col-label';
+    label.textContent = `${slot}th Item`;
+    return label;
+  };
 
   for (let slot = 4; slot <= LAST_SLOT; slot++) {
     const link = document.createElement('span');
     link.className = 'build-link';
     const branch = document.createElement('div');
     branch.className = 'build-branch';
+    const label = makeLabel(slot);
+    branch.append(label);
     buildTree.append(link, branch);
     links.push(link);
     branches.push(branch);
+    labels.push(label);
   }
 
   // Fixed final node, shown once every choice above it has been made
@@ -73,6 +84,7 @@ if (buildTree) {
   const finalBranch = document.createElement('div');
   finalBranch.className = 'build-branch collapsed';
   finalBranch.innerHTML =
+    `<span class="build-col-label">6th Item</span>` +
     `<div class="build-branch-row"><div class="build-node">` +
     `<img src="${iconUrl(FINAL_ITEM)}" alt="${ITEMS[FINAL_ITEM].name}" ` +
     `title="${ITEMS[FINAL_ITEM].name} (sell your boots)"></div></div>`;
@@ -136,7 +148,7 @@ if (buildTree) {
         branch.hidden = !reached;
 
         if (reached) {
-          branch.replaceChildren(...POOL
+          branch.replaceChildren(labels[index], ...POOL
             .filter(id => availableAt(id, index))
             .filter(id => !picked || id === picked)
             .map(id => makeRow(index, id)));
@@ -144,6 +156,8 @@ if (buildTree) {
       }
 
       branch.classList.toggle('collapsed', Boolean(picked));
+      // Call out the column the visitor is meant to click next
+      labels[index].classList.toggle('needs-pick', index === picks.length);
     });
 
     const complete = picks.length >= branches.length;
