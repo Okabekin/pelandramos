@@ -578,59 +578,81 @@ section h2 {
   font-weight: 600;
 }
 
-/* Item build */
-.item-build {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  align-items: start;
-}
-
-.item-step {
+/* Item build tree */
+.build-tree-wrap {
+  overflow-x: auto;
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 14px;
-  padding: 20px;
+  padding: 28px 24px;
 }
 
-.item-step-label {
-  display: block;
-  color: var(--text-muted);
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 14px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--border);
-}
-
-.item-card {
+.build-tree {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 7px 0;
-  font-size: 14px;
+  min-width: max-content;
 }
 
-.item-card img {
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
+.build-node {
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+.build-node img {
+  width: 52px;
+  height: 52px;
+  border-radius: 10px;
   border: 1px solid var(--border);
+  background: var(--bg-alt);
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.build-node img:hover {
+  border-color: var(--violet);
+  transform: translateY(-2px);
+}
+
+/* Straight connector between two nodes */
+.build-link {
+  width: 36px;
+  height: 2px;
+  background: var(--border);
   flex-shrink: 0;
 }
 
-.item-step-note {
-  margin-top: 12px;
-  padding-top: 12px;
-  border-top: 1px solid var(--border);
-  font-size: 12px;
-  font-style: italic;
-  color: var(--text-muted);
+/* Splits one connector into several branches */
+.build-branch {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-left: 36px;
 }
 
-@media (max-width: 820px) {
-  .item-build { grid-template-columns: 1fr; }
+/* Vertical trunk, spanning first row centre to last row centre */
+.build-branch::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 26px;
+  bottom: 26px;
+  width: 2px;
+  background: var(--border);
+}
+
+.build-branch-row {
+  position: relative;
+}
+
+/* Horizontal stub from the trunk to each node */
+.build-branch-row::before {
+  content: "";
+  position: absolute;
+  left: -36px;
+  top: 26px;
+  width: 36px;
+  height: 2px;
+  background: var(--border);
 }
 
 /* Video */
