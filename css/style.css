@@ -655,6 +655,35 @@ section h2 {
   background: var(--border);
 }
 
+[hidden] { display: none !important; }
+
+/* Once a branch is chosen, only that node remains, so drop the trunk */
+.build-branch.collapsed::before { display: none; }
+
+.build-choice {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.build-choice[aria-pressed="true"] img {
+  border-color: var(--violet);
+  box-shadow: 0 0 0 3px var(--violet-glow);
+}
+
+.build-choice:focus-visible img {
+  outline: 2px solid var(--toxic);
+  outline-offset: 2px;
+}
+
+.build-hint {
+  margin-top: 20px;
+  font-size: 12px;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
 /* Video */
 .video-embed {
   position: relative;

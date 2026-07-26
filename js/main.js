@@ -28,6 +28,42 @@ document.querySelectorAll('.level-cells[data-active]').forEach(row => {
   }
 });
 
+const slot3 = document.getElementById('slot3');
+
+if (slot3) {
+  const slot4 = document.getElementById('slot4');
+  const slot4Link = document.getElementById('slot4Link');
+  const hint = document.getElementById('buildHint');
+  const choices = [...slot3.querySelectorAll('.build-choice')];
+
+  const select = item => {
+    choices.forEach(choice => {
+      const isPicked = choice.dataset.item === item;
+      choice.setAttribute('aria-pressed', isPicked);
+      choice.closest('.build-branch-row').hidden = item !== null && !isPicked;
+    });
+
+    slot3.classList.toggle('collapsed', item !== null);
+    slot4.hidden = item === null;
+    slot4Link.hidden = item === null;
+
+    slot4.querySelectorAll('.build-branch-row').forEach(row => {
+      row.hidden = row.dataset.item === item;
+    });
+
+    hint.textContent = item === null
+      ? 'Pick a 3rd item to see your 4th item options.'
+      : 'Click your 3rd item again to change it.';
+  };
+
+  choices.forEach(choice => {
+    choice.addEventListener('click', () => {
+      const alreadyPicked = choice.getAttribute('aria-pressed') === 'true';
+      select(alreadyPicked ? null : choice.dataset.item);
+    });
+  });
+}
+
 document.querySelectorAll('.tree-tabs').forEach(tabs => {
   const column = tabs.parentElement;
 

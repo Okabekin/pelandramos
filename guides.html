@@ -252,7 +252,7 @@
       <p class="section-lead">The core path I go on almost every game, and where it opens up.</p>
 
       <div class="build-tree-wrap">
-        <div class="build-tree">
+        <div class="build-tree" id="buildTree">
           <div class="build-node">
             <img src="https://ddragon.leagueoflegends.com/cdn/16.14.1/img/item/3179.png" alt="Umbral Glaive" title="Umbral Glaive">
           </div>
@@ -265,24 +265,61 @@
 
           <span class="build-link"></span>
 
-          <div class="build-branch">
+          <div class="build-branch" id="slot3">
             <div class="build-branch-row">
-              <div class="build-node">
+              <button class="build-node build-choice" data-item="3142" aria-pressed="false">
                 <img src="https://ddragon.leagueoflegends.com/cdn/16.14.1/img/item/3142.png" alt="Youmuu's Ghostblade" title="Youmuu's Ghostblade">
-              </div>
+              </button>
             </div>
             <div class="build-branch-row">
-              <div class="build-node">
+              <button class="build-node build-choice" data-item="6698" aria-pressed="false">
                 <img src="https://ddragon.leagueoflegends.com/cdn/16.14.1/img/item/6698.png" alt="Profane Hydra" title="Profane Hydra">
-              </div>
+              </button>
             </div>
             <div class="build-branch-row">
+              <button class="build-node build-choice" data-item="3036" aria-pressed="false">
+                <img src="https://ddragon.leagueoflegends.com/cdn/16.14.1/img/item/3036.png" alt="Lord Dominik's Regards" title="Lord Dominik's Regards">
+              </button>
+            </div>
+          </div>
+
+          <span class="build-link" id="slot4Link" hidden></span>
+
+          <div class="build-branch" id="slot4" hidden>
+            <div class="build-branch-row" data-item="3036">
               <div class="build-node">
                 <img src="https://ddragon.leagueoflegends.com/cdn/16.14.1/img/item/3036.png" alt="Lord Dominik's Regards" title="Lord Dominik's Regards">
               </div>
             </div>
+            <div class="build-branch-row" data-item="6694">
+              <div class="build-node">
+                <img src="https://ddragon.leagueoflegends.com/cdn/16.14.1/img/item/6694.png" alt="Serylda's Grudge" title="Serylda's Grudge">
+              </div>
+            </div>
+            <div class="build-branch-row" data-item="3033">
+              <div class="build-node">
+                <img src="https://ddragon.leagueoflegends.com/cdn/16.14.1/img/item/3033.png" alt="Mortal Reminder" title="Mortal Reminder">
+              </div>
+            </div>
+            <div class="build-branch-row" data-item="3142">
+              <div class="build-node">
+                <img src="https://ddragon.leagueoflegends.com/cdn/16.14.1/img/item/3142.png" alt="Youmuu's Ghostblade" title="Youmuu's Ghostblade">
+              </div>
+            </div>
+            <div class="build-branch-row" data-item="6698">
+              <div class="build-node">
+                <img src="https://ddragon.leagueoflegends.com/cdn/16.14.1/img/item/6698.png" alt="Profane Hydra" title="Profane Hydra">
+              </div>
+            </div>
+            <div class="build-branch-row" data-item="3814">
+              <div class="build-node">
+                <img src="https://ddragon.leagueoflegends.com/cdn/16.14.1/img/item/3814.png" alt="Edge of Night" title="Edge of Night">
+              </div>
+            </div>
           </div>
         </div>
+
+        <p class="build-hint" id="buildHint">Pick a 3rd item to see your 4th item options.</p>
       </div>
     </div>
   </section>
