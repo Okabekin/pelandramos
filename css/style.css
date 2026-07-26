@@ -594,6 +594,7 @@ section h2 {
 }
 
 .build-node {
+  display: block;   /* keeps rows exactly icon-height, so connectors stay aligned */
   flex-shrink: 0;
   line-height: 0;
 }
