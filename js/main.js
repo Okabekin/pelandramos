@@ -42,7 +42,8 @@ if (buildTree) {
     3142: { name: "Youmuu's Ghostblade" },
     6698: { name: 'Profane Hydra' },
     3814: { name: 'Edge of Night' },
-    3031: { name: 'Infinity Edge' }
+    // Only worth building once one of the crit-based armour pen items is up
+    3031: { name: 'Infinity Edge', requires: ['3036', '3033'] }
   };
   const POOL = ['3036', '6694', '3033', '3142', '6698', '3814', '3031'];
 
@@ -64,12 +65,17 @@ if (buildTree) {
 
   const ordinal = slot => slot + (slot === 3 ? 'rd' : 'th');
 
-  // An item is unavailable if an earlier slot already took it or its group
-  const takenBefore = (id, depth) => {
+  // An item is offered only if no earlier slot took it or its group,
+  // and any item it depends on is already in the path
+  const availableAt = (id, depth) => {
     const earlier = picks.slice(0, depth);
-    if (earlier.includes(id)) return true;
-    const group = ITEMS[id].group;
-    return Boolean(group) && earlier.some(pick => ITEMS[pick].group === group);
+    if (earlier.includes(id)) return false;
+
+    const { group, requires } = ITEMS[id];
+    if (group && earlier.some(pick => ITEMS[pick].group === group)) return false;
+    if (requires && !requires.some(req => earlier.includes(req))) return false;
+
+    return true;
   };
 
   const choose = (index, id) => {
@@ -116,7 +122,7 @@ if (buildTree) {
 
         if (reached) {
           branch.replaceChildren(...POOL
-            .filter(id => !takenBefore(id, index))
+            .filter(id => availableAt(id, index))
             .filter(id => !picked || id === picked)
             .map(id => makeRow(index, id)));
         }
