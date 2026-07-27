@@ -363,3 +363,20 @@ document.querySelectorAll('.rune-expandable').forEach(item => {
     }
   });
 });
+
+const serpentsFang = document.getElementById('serpentsFang');
+
+if (serpentsFang) {
+  const toggle = () => {
+    const isOpen = serpentsFang.classList.toggle('open');
+    serpentsFang.setAttribute('aria-expanded', isOpen);
+  };
+
+  serpentsFang.addEventListener('click', toggle);
+  serpentsFang.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggle();
+    }
+  });
+}
