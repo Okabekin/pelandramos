@@ -73,16 +73,28 @@ if (buildTree) {
     },
     3142: {
       name: "Youmuu's Ghostblade",
-      notes: { 4: "Great as a 4th item if you're snowballing hard enough to afford " +
-        "another lethality item. The movement speed is always nice to have, but can be " +
-        "mandatory into certain comps just so you can actually reach them reliably." }
+      notes: {
+        4: {
+          default: "Great as a 4th item if you're snowballing hard enough to afford " +
+            "another lethality item. The movement speed is always nice to have, but can be " +
+            "mandatory into certain comps just so you can actually reach them reliably.",
+          afterLDR: "Great as a 4th item option after LDR. The movement speed is always " +
+            "nice to have, but can be mandatory into certain comps just so you can " +
+            "actually reach them reliably."
+        }
+      }
     },
     6698: {
       name: 'Profane Hydra',
       notes: {
-        4: "In some games you're so far ahead that you can afford another lethality " +
-          "item at 4th slot &ndash; you still deal true damage in those scenarios. " +
-          "Profane is a great pick for this.",
+        4: {
+          default: "In some games you're so far ahead that you can afford another " +
+            "lethality item at 4th slot &ndash; you still deal true damage in those " +
+            "scenarios. Profane is a great pick for this.",
+          afterLDR: "In some games you're so far ahead that you can afford a lethality " +
+            "item at 4th slot &ndash; you still deal true damage in those scenarios. " +
+            "Profane is a great pick for this."
+        },
         5: "A solid last option if you want the most damage after IE. The benefit over " +
           "IE is that it's much cheaper, so in some games you can actually use Profane " +
           "where going IE you might not even finish it."
@@ -91,15 +103,24 @@ if (buildTree) {
     // Only worth building once one of the crit-based armour pen items is up
     3031: {
       name: 'Infinity Edge', requires: ['3036', '3033'],
-      notes: { 5: "IE is the most damage you can get. The problem is sometimes not " +
-        "having enough money for the BF Sword &ndash; it's really expensive. But once " +
-        "you have it, your damage is huge. It's a risk though, since it's so expensive." }
+      notes: {
+        4: "The most damage item option, great after LDR. If you have enough for a BF " +
+          "Sword and don't need the immediate power spike from the other alternatives, " +
+          "you can go for this.",
+        5: "IE is the most damage you can get. The problem is sometimes not " +
+          "having enough money for the BF Sword &ndash; it's really expensive. But once " +
+          "you have it, your damage is huge. It's a risk though, since it's so expensive."
+      }
     },
     3814: {
       name: 'Edge of Night',
       notes: {
-        4: "You go Edge of Night 4th when you're really ahead. The spell shield and HP " +
-          "can help solidify your lead and protect you from being shut down.",
+        4: {
+          default: "You go Edge of Night 4th when you're really ahead. The spell shield " +
+            "and HP can help solidify your lead and protect you from being shut down.",
+          afterLDR: "Simply a solid defensive option. The spell shield and HP can help " +
+            "protect you from being shut down."
+        },
         5: "Getting a defensive item last is always great. In the late game, that extra " +
           "protection can go a long way. Edge of Night is great for that."
       }
@@ -107,10 +128,15 @@ if (buildTree) {
     3026: {
       name: 'Guardian Angel',
       notes: {
-        4: "GA is great if you're ahead as well. Just like other defensive options in " +
-          "your 4th slot, it can protect you from being shut down and, when you're " +
-          "snowballing, make you feel unkillable. If I can afford a BF Sword, I usually " +
-          "consider buying this defensive option &ndash; it's great into AD damage.",
+        4: {
+          default: "GA is great if you're ahead as well. Just like other defensive " +
+            "options in your 4th slot, it can protect you from being shut down and, when " +
+            "you're snowballing, make you feel unkillable. If I can afford a BF Sword, I " +
+            "usually consider buying this defensive option &ndash; it's great into AD damage.",
+          afterLDR: "Simply a solid defensive option, same as Edge of Night. If I can " +
+            "afford a BF Sword, I usually consider buying this defensive option " +
+            "&ndash; it's great into AD damage."
+        },
         5: "Similar to Edge of Night, GA is another great defensive option. If I " +
           "have enough money for a BF Sword, I go for GA. If I don't and can only afford a " +
           "Serrated Dirk, I go Edge of Night instead."
@@ -204,6 +230,15 @@ if (buildTree) {
     render();
   };
 
+  // Some notes read differently depending on whether the 3rd item was LDR
+  // (a scaling/armor pen pick) rather than a lethality item, so a note can
+  // either be a plain string or a { default, afterLDR } pair
+  const resolveNote = note => {
+    if (!note) return null;
+    if (typeof note === 'string') return note;
+    return picks[0] === '3036' ? (note.afterLDR || note.default) : note.default;
+  };
+
   const makeRow = (index, id) => {
     const row = document.createElement('div');
     row.className = 'build-branch-row';
@@ -222,7 +257,7 @@ if (buildTree) {
     button.append(img);
     row.append(button);
 
-    const slotNote = ITEMS[id].notes && ITEMS[id].notes[index + 3];
+    const slotNote = resolveNote(ITEMS[id].notes && ITEMS[id].notes[index + 3]);
     if (slotNote) {
       const note = document.createElement('p');
       note.className = 'build-note';
