@@ -35,51 +35,74 @@ if (buildTree) {
   const LAST_SLOT = 5;
 
   // Items sharing a group build out of the same component, so only one can be owned.
-  // Notes describe picking that item as the 4th item specifically (they're only
-  // ever shown while the 4th item column is open, see the has-notes branch below).
+  // notes is keyed by which slot the item is being considered for, since the same
+  // item can have a different reason to get it depending on when it's picked.
+  // A note is only shown while that item's column is the one currently open.
   const ITEMS = {
     3036: {
       name: "Lord Dominik's Regards", group: 'lastwhisper',
-      note: "Usually you need armor pen as a 4th item because the enemy already bought " +
-        "armor, or their base armor is high enough to make this good on its own. Go LDR " +
-        "if the enemy has a lot of HP and you're planning to build into the Infinity Edge " +
-        "power spike later &ndash; so when you know the game will run long and you'll want " +
-        "that crit power spike."
+      notes: { 4: "Usually you need armor pen as a 4th item because the enemy already " +
+        "bought armor, or their base armor is high enough to make this good on its own. " +
+        "Go LDR if the enemy has a lot of HP and you're planning to build into the " +
+        "Infinity Edge power spike later &ndash; so when you know the game will run long " +
+        "and you'll want that crit power spike." }
     },
     6694: {
       name: "Serylda's Grudge", group: 'lastwhisper',
-      note: "Serylda's is the stronger immediate power spike compared to LDR. It's 300 " +
-        "gold cheaper and gives 10 more AD. Worth considering especially when you're not " +
-        "playing into high-HP targets."
+      notes: { 4: "Serylda's is the stronger immediate power spike compared to LDR. It's " +
+        "300 gold cheaper and gives 10 more AD. Worth considering especially when you're " +
+        "not playing into high-HP targets." }
     },
     3033: {
       name: 'Mortal Reminder', group: 'lastwhisper',
-      note: "Shaco isn't the best at applying anti-heal, but it's still the right call in " +
-        "some matchups &ndash; if the enemy has insane healing like Soraka or Hecarim. " +
-        "It's my least-bought armor pen item, though."
+      notes: { 4: "Shaco isn't the best at applying anti-heal, but it's still the right " +
+        "call in some matchups &ndash; if the enemy has insane healing like Soraka or " +
+        "Hecarim. It's my least-bought armor pen item, though." }
     },
     3142: {
       name: "Youmuu's Ghostblade",
-      note: "Great as a 4th item if you're snowballing hard enough to afford another " +
-        "lethality item. The movement speed is always nice to have, but can be mandatory " +
-        "into certain comps just so you can actually reach them reliably."
+      notes: { 4: "Great as a 4th item if you're snowballing hard enough to afford " +
+        "another lethality item. The movement speed is always nice to have, but can be " +
+        "mandatory into certain comps just so you can actually reach them reliably." }
     },
     6698: {
       name: 'Profane Hydra',
-      note: "In some games you're so far ahead that you can afford another lethality item " +
-        "at 4th slot &ndash; you still deal true damage in those scenarios. Profane is a " +
-        "great pick for this."
+      notes: {
+        4: "In some games you're so far ahead that you can afford another lethality " +
+          "item at 4th slot &ndash; you still deal true damage in those scenarios. " +
+          "Profane is a great pick for this.",
+        5: "A solid last option if you want the most damage after IE. The benefit over " +
+          "IE is that it's much cheaper, so in some games you can actually use Profane " +
+          "where going IE you might not even finish it."
+      }
+    },
+    // Only worth building once one of the crit-based armour pen items is up
+    3031: {
+      name: 'Infinity Edge', requires: ['3036', '3033'],
+      notes: { 5: "IE is the most damage you can get. The problem is sometimes not " +
+        "having enough money for the BF Sword &ndash; it's really expensive. But once " +
+        "you have it, your damage is huge. It's a risk though, since it's so expensive." }
     },
     3814: {
       name: 'Edge of Night',
-      note: "You go Edge of Night 4th when you're really ahead. The spell shield and HP " +
-        "can help solidify your lead and protect you from being shut down."
+      notes: {
+        4: "You go Edge of Night 4th when you're really ahead. The spell shield and HP " +
+          "can help solidify your lead and protect you from being shut down.",
+        5: "Getting a defensive item last is always great. In the late game, that extra " +
+          "protection can go a long way. Edge of Night is great for that."
+      }
     },
-    // Only worth building once one of the crit-based armour pen items is up
-    3031: { name: 'Infinity Edge', requires: ['3036', '3033'] },
+    3026: {
+      name: 'Guardian Angel',
+      notes: { 5: "Similar to Edge of Night, GA is another great defensive option. If I " +
+        "have enough money for a BF Sword, I go for GA. If I don't and can only afford a " +
+        "Serrated Dirk, I go Edge of Night instead." }
+    },
     3046: { name: 'Phantom Dancer' }
   };
-  const POOL = ['3036', '6694', '3033', '3142', '6698', '3814', '3031'];
+  // Order also controls display order within a slot: offensive picks first,
+  // defensive ones (Edge of Night, Guardian Angel) last
+  const POOL = ['3036', '6694', '3033', '3142', '6698', '3031', '3814', '3026'];
   const FINAL_ITEM = '3046';   // the 6th slot is fixed, bought by selling boots
 
   const iconUrl = id => `https://ddragon.leagueoflegends.com/cdn/${PATCH}/img/item/${id}.png`;
@@ -102,8 +125,8 @@ if (buildTree) {
     const link = document.createElement('span');
     link.className = 'build-link';
     const branch = document.createElement('div');
-    // Only the 4th item column has notes written for it so far
-    branch.className = slot === 4 ? 'build-branch has-notes' : 'build-branch';
+    branch.className = 'build-branch has-notes';
+    branch.dataset.slot = slot;
     const label = makeLabel(slot);
     branch.append(label);
     buildTree.append(link, branch);
@@ -164,10 +187,11 @@ if (buildTree) {
     button.append(img);
     row.append(button);
 
-    if (ITEMS[id].note) {
+    const slotNote = ITEMS[id].notes && ITEMS[id].notes[index + 3];
+    if (slotNote) {
       const note = document.createElement('p');
       note.className = 'build-note';
-      note.innerHTML = `<strong>${ITEMS[id].name}</strong>${ITEMS[id].note}`;
+      note.innerHTML = `<strong>${ITEMS[id].name}</strong>${slotNote}`;
       row.append(note);
     }
 
