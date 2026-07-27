@@ -47,10 +47,8 @@ if (buildTree) {
           "Go LDR if the enemy has a lot of HP and you're planning to build into the " +
           "Infinity Edge power spike later &ndash; so when you know the game will run long " +
           "and you'll want that crit power spike.",
-        5: "Once you've already gone defensive or gotten your damage from Profane at " +
-          "4th, your games usually don't run long enough to reach a 5th item &ndash; but " +
-          "if they do stall out, that last item has to be armor pen. LDR is great if the " +
-          "enemy has a lot of HP."
+        5: "If your game runs long enough to reach a 5th item, that last item has to " +
+          "be armor pen. LDR is great if the enemy has a lot of HP."
       }
     },
     6694: {
@@ -219,11 +217,15 @@ if (buildTree) {
     if (earlier.includes(id)) return false;
 
     const { group, requires } = ITEMS[id];
+    const lastwhisperUsed = earlier.some(pick => ITEMS[pick].group === 'lastwhisper');
     if (group && earlier.some(pick => ITEMS[pick].group === group)) return false;
     if (requires && !requires.some(req => earlier.includes(req))) return false;
     // The lock only kicks in once one of these is picked at 4th or later &ndash;
-    // Profane is also a normal 3rd item choice and shouldn't restrict the 4th slot
-    if (earlier.slice(1).some(pick => ARMOR_PEN_LOCK.includes(pick)) && group !== 'lastwhisper') return false;
+    // Profane is also a normal 3rd item choice and shouldn't restrict the 4th slot.
+    // It's also skipped if armor pen was already bought (e.g. LDR 3rd), since
+    // otherwise it would lock the next slot down to zero available items.
+    if (!lastwhisperUsed && earlier.slice(1).some(pick => ARMOR_PEN_LOCK.includes(pick)) &&
+      group !== 'lastwhisper') return false;
 
     return true;
   };
