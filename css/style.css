@@ -703,9 +703,9 @@ section h2 {
   color: var(--text-muted);
 }
 
-/* The 6th item is fixed, so its note is always shown rather than only
-   while its column is being actively chosen */
-.build-branch.final-branch .build-note {
+/* Fixed items (1st, 2nd, 6th) show their note permanently rather than
+   only while their column is being actively chosen */
+.build-branch.always-note .build-note {
   display: block;
   width: 360px;
   font-size: 12.5px;

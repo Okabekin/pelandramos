@@ -191,7 +191,7 @@ if (buildTree) {
   const finalLink = document.createElement('span');
   finalLink.className = 'build-link';
   const finalBranch = document.createElement('div');
-  finalBranch.className = 'build-branch collapsed final-branch';
+  finalBranch.className = 'build-branch collapsed always-note';
   finalBranch.innerHTML =
     `<span class="build-col-label">6th Item</span>` +
     `<div class="build-branch-row"><div class="build-node">` +
