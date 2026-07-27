@@ -763,6 +763,59 @@ section h2 {
   font-size: 15px;
 }
 
+/* Fixed items with an explanation, click the icon to fade the text in below
+   it instead of showing it permanently next to the icon */
+.build-toggle-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.build-toggle-btn {
+  position: relative;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.build-toggle-btn::after {
+  content: "+";
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-family: var(--font-head);
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.build-toggle-item.open .build-toggle-btn::after {
+  content: "\2212";
+  color: var(--violet);
+  border-color: var(--violet);
+}
+
+.build-note-below {
+  display: none;
+  margin-top: 10px;
+  width: 220px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.build-toggle-item.open .build-note-below {
+  display: block;
+}
+
 /* Situational item that isn't part of the core path, so it's shown dimmed
    until hovered/expanded instead of sitting in the main tree */
 .build-optional {

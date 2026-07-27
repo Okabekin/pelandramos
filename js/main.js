@@ -380,3 +380,13 @@ if (serpentsFang) {
     }
   });
 }
+
+document.querySelectorAll('.build-toggle-btn').forEach(btn => {
+  const wrapper = btn.closest('.build-toggle-item');
+  if (!wrapper || !wrapper.querySelector('.build-note-below')) return;
+
+  btn.addEventListener('click', () => {
+    const isOpen = wrapper.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen);
+  });
+});
