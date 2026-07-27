@@ -41,23 +41,40 @@ if (buildTree) {
   const ITEMS = {
     3036: {
       name: "Lord Dominik's Regards", group: 'lastwhisper',
-      notes: { 4: "Usually you need armor pen as a 4th item because the enemy already " +
-        "bought armor, or their base armor is high enough to make this good on its own. " +
-        "Go LDR if the enemy has a lot of HP and you're planning to build into the " +
-        "Infinity Edge power spike later &ndash; so when you know the game will run long " +
-        "and you'll want that crit power spike." }
+      notes: {
+        4: "Usually you need armor pen as a 4th item because the enemy already " +
+          "bought armor, or their base armor is high enough to make this good on its own. " +
+          "Go LDR if the enemy has a lot of HP and you're planning to build into the " +
+          "Infinity Edge power spike later &ndash; so when you know the game will run long " +
+          "and you'll want that crit power spike.",
+        5: "Usually you need armor pen as a 5th item because the enemy already " +
+          "bought armor, or their base armor is high enough to make this good on its own. " +
+          "Go LDR if the enemy has a lot of HP and you're planning to build into the " +
+          "Infinity Edge power spike later &ndash; so when you know the game will run long " +
+          "and you'll want that crit power spike."
+      }
     },
     6694: {
       name: "Serylda's Grudge", group: 'lastwhisper',
-      notes: { 4: "Serylda's is the stronger immediate power spike compared to LDR. It's " +
-        "300 gold cheaper and gives 10 more AD. Worth considering especially when you're " +
-        "not playing into high-HP targets." }
+      notes: {
+        4: "Serylda's is the stronger immediate power spike compared to LDR. It's " +
+          "300 gold cheaper and gives 10 more AD. Worth considering especially when you're " +
+          "not playing into high-HP targets.",
+        5: "Serylda's is the stronger immediate power spike compared to LDR. It's " +
+          "300 gold cheaper and gives 10 more AD. Worth considering especially when you're " +
+          "not playing into high-HP targets."
+      }
     },
     3033: {
       name: 'Mortal Reminder', group: 'lastwhisper',
-      notes: { 4: "Shaco isn't the best at applying anti-heal, but it's still the right " +
-        "call in some matchups &ndash; if the enemy has insane healing like Soraka or " +
-        "Hecarim. It's my least-bought armor pen item, though." }
+      notes: {
+        4: "Shaco isn't the best at applying anti-heal, but it's still the right " +
+          "call in some matchups &ndash; if the enemy has insane healing like Soraka or " +
+          "Hecarim. It's my least-bought armor pen item, though.",
+        5: "Shaco isn't the best at applying anti-heal, but it's still the right " +
+          "call in some matchups &ndash; if the enemy has insane healing like Soraka or " +
+          "Hecarim. It's my least-bought armor pen item, though."
+      }
     },
     3142: {
       name: "Youmuu's Ghostblade",
@@ -164,6 +181,11 @@ if (buildTree) {
 
   const ordinal = slot => slot + (slot === 3 ? 'rd' : 'th');
 
+  // Once a defensive item is in the path, the only thing left worth finishing
+  // is armor pen &ndash; going back to lethality items or a second defensive
+  // item doesn't make sense anymore
+  const DEFENSIVE = ['3814', '3026', '3156'];
+
   // An item is offered only if no earlier slot took it or its group,
   // and any item it depends on is already in the path
   const availableAt = (id, depth) => {
@@ -173,6 +195,7 @@ if (buildTree) {
     const { group, requires } = ITEMS[id];
     if (group && earlier.some(pick => ITEMS[pick].group === group)) return false;
     if (requires && !requires.some(req => earlier.includes(req))) return false;
+    if (earlier.some(pick => DEFENSIVE.includes(pick)) && group !== 'lastwhisper') return false;
 
     return true;
   };
