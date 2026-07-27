@@ -655,7 +655,7 @@ section h2 {
   --row-h: 52px;   /* every row is this tall, which is what keeps the trunk exact */
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
   padding-left: 22px;
   /* Vertical trunk, drawn from the first row's centre to the last row's.
      Painted as a background so the branch needs no positioning of its own,
