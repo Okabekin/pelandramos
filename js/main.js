@@ -47,11 +47,9 @@ if (buildTree) {
           "Go LDR if the enemy has a lot of HP and you're planning to build into the " +
           "Infinity Edge power spike later &ndash; so when you know the game will run long " +
           "and you'll want that crit power spike.",
-        5: "Usually you need armor pen as a 5th item because the enemy already " +
-          "bought armor, or their base armor is high enough to make this good on its own. " +
-          "Go LDR if the enemy has a lot of HP and you're planning to build into the " +
-          "Infinity Edge power spike later &ndash; so when you know the game will run long " +
-          "and you'll want that crit power spike."
+        5: "If you went the defensive item route at 4th, your games usually don't run " +
+          "long enough to reach a 5th item &ndash; but if they do stall out, that last " +
+          "item has to be armor pen. LDR is great if the enemy has a lot of HP."
       }
     },
     6694: {
@@ -60,9 +58,7 @@ if (buildTree) {
         4: "Serylda's is the stronger immediate power spike compared to LDR. It's " +
           "300 gold cheaper and gives 10 more AD. Worth considering especially when you're " +
           "not playing into high-HP targets.",
-        5: "Serylda's is the stronger immediate power spike compared to LDR. It's " +
-          "300 gold cheaper and gives 10 more AD. Worth considering especially when you're " +
-          "not playing into high-HP targets."
+        5: "Serylda's is great if the enemy doesn't have a lot of HP."
       }
     },
     3033: {
@@ -71,9 +67,7 @@ if (buildTree) {
         4: "Shaco isn't the best at applying anti-heal, but it's still the right " +
           "call in some matchups &ndash; if the enemy has insane healing like Soraka or " +
           "Hecarim. It's my least-bought armor pen item, though.",
-        5: "Shaco isn't the best at applying anti-heal, but it's still the right " +
-          "call in some matchups &ndash; if the enemy has insane healing like Soraka or " +
-          "Hecarim. It's my least-bought armor pen item, though."
+        5: "Mortal is fine into heavy healing, but I usually prefer the other options."
       }
     },
     3142: {
