@@ -816,14 +816,26 @@ section h2 {
   display: block;
 }
 
-/* Situational item that isn't part of the core path, so it's shown dimmed
-   until hovered/expanded instead of sitting in the main tree */
-.build-optional {
+/* Groups the optional Serpent's Fang pick with the 1st/2nd item row it
+   sits above, without disturbing the column-label alignment above it */
+.build-core-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.build-core-row {
   display: flex;
   align-items: center;
-  gap: 14px;
-  margin-top: 16px;
-  padding: 12px 16px;
+}
+
+/* Situational item that isn't part of the core path, so it's shown dimmed
+   until hovered/expanded instead of sitting in the main tree */
+.build-optional-inline {
+  display: inline-flex;
+  flex-direction: column;
+  padding: 6px 10px;
   border: 1px dashed var(--border);
   border-radius: 10px;
   cursor: pointer;
@@ -831,51 +843,45 @@ section h2 {
   transition: opacity 0.15s, border-color 0.15s;
 }
 
-.build-optional:hover,
-.build-optional:focus-visible,
-.build-optional.open {
+.build-optional-inline:hover,
+.build-optional-inline:focus-visible,
+.build-optional-inline.open {
   opacity: 1;
   border-color: var(--violet);
   outline: none;
 }
 
-.build-optional img {
-  width: 44px;
-  height: 44px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: var(--bg-alt);
-  flex-shrink: 0;
-}
-
-.build-optional-body {
-  flex: 1;
-  min-width: 0;
-}
-
-.build-optional-head {
+.build-optional-row {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.build-optional-head strong {
-  font-family: var(--font-head);
-  font-size: 14px;
-  letter-spacing: 0.02em;
-  color: var(--text);
-}
-
-.build-optional-toggle {
-  margin-left: auto;
-  color: var(--text-muted);
-  font-size: 16px;
-  font-family: var(--font-head);
-  transition: transform 0.15s;
+.build-optional-inline img {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg-alt);
   flex-shrink: 0;
 }
 
-.build-optional.open .build-optional-toggle {
+.build-optional-name {
+  font-family: var(--font-head);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.build-optional-toggle {
+  color: var(--text-muted);
+  font-size: 14px;
+  font-family: var(--font-head);
+  transition: transform 0.15s, color 0.15s;
+}
+
+.build-optional-inline.open .build-optional-toggle {
   transform: rotate(45deg);
   color: var(--violet);
 }
@@ -883,13 +889,39 @@ section h2 {
 .build-optional-detail {
   display: none;
   margin-top: 6px;
-  font-size: 13px;
+  width: 220px;
+  font-size: 12px;
   line-height: 1.5;
   color: var(--text-muted);
 }
 
-.build-optional.open .build-optional-detail {
+.build-optional-inline.open .build-optional-detail {
   display: block;
+}
+
+/* Quick-reference build strip below the interactive tree */
+.build-common {
+  margin-top: 24px;
+  padding: 20px 24px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow-x: auto;
+}
+
+.build-common-title {
+  font-family: var(--font-head);
+  font-size: 12px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--toxic);
+  margin-bottom: 14px;
+}
+
+.build-common-row {
+  display: flex;
+  align-items: center;
+  width: max-content;
 }
 
 /* Video */
