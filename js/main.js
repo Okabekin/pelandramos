@@ -106,8 +106,12 @@ if (buildTree) {
     },
     3156: {
       name: 'Maw of Malmortius',
-      notes: { 4: "You can also go Maw 4th if you're playing against heavy AP damage as " +
-        "your defensive option." }
+      notes: {
+        4: "You can also go Maw 4th if you're playing against heavy AP damage as " +
+          "your defensive option.",
+        5: "Maw is also a good defensive option into heavy AP comps. I mostly buy the " +
+          "other alternatives though, since they have stronger effects."
+      }
     },
     3046: { name: 'Phantom Dancer' }
   };
