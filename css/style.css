@@ -1122,6 +1122,21 @@ section h2 {
   width: max-content;
 }
 
+.build-boots-text {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.build-boots-text:last-of-type {
+  margin-bottom: 14px;
+}
+
+.build-boots-row {
+  gap: 12px;
+}
+
 /* Video */
 .video-embed {
   position: relative;
