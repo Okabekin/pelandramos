@@ -562,6 +562,16 @@ section h2 {
   border-radius: 12px;
 }
 
+.spell-note-title {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--toxic);
+  font-family: var(--font-head);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
 .spell-note p {
   font-size: 13px;
   line-height: 1.6;
