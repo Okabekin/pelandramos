@@ -816,28 +816,22 @@ section h2 {
   display: block;
 }
 
-/* Groups the optional Serpent's Fang pick with the 1st/2nd item row it
-   sits above, without disturbing the column-label alignment above it */
-.build-core-group {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-}
-
-.build-core-row {
-  display: flex;
-  align-items: center;
-}
-
 /* Situational item that isn't part of the core path, so it's shown dimmed
-   until hovered/expanded instead of sitting in the main tree */
+   until hovered/expanded instead of sitting in the main tree. Positioned
+   absolutely (out of flow) above the 1st/2nd item so expanding it can
+   never push those icons &ndash; and the connector lines they sit on &ndash;
+   out of place. */
 .build-optional-inline {
+  position: absolute;
+  top: 16px;
+  left: 0;
+  z-index: 2;
   display: inline-flex;
   flex-direction: column;
   padding: 6px 10px;
   border: 1px dashed var(--border);
   border-radius: 10px;
+  background: var(--bg);
   cursor: pointer;
   opacity: 0.6;
   transition: opacity 0.15s, border-color 0.15s;
