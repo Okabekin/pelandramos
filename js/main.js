@@ -193,12 +193,16 @@ if (buildTree) {
   const finalLink = document.createElement('span');
   finalLink.className = 'build-link';
   const finalBranch = document.createElement('div');
-  finalBranch.className = 'build-branch collapsed';
+  finalBranch.className = 'build-branch collapsed final-branch';
   finalBranch.innerHTML =
     `<span class="build-col-label">6th Item</span>` +
     `<div class="build-branch-row"><div class="build-node">` +
     `<img src="${iconUrl(FINAL_ITEM)}" alt="${ITEMS[FINAL_ITEM].name}" ` +
-    `title="${ITEMS[FINAL_ITEM].name} (sell your boots)"></div></div>`;
+    `title="${ITEMS[FINAL_ITEM].name} (sell your boots)"></div>` +
+    `<p class="build-note"><strong>${ITEMS[FINAL_ITEM].name}</strong>` +
+    `Sell your boots for PD as the last thing you can improve in your build. It gives ` +
+    `you 75% crit rate if you went the LDR into IE route &ndash; an insane DPS increase ` +
+    `with no drop in movement speed (I only buy Tier 1 boots).</p></div>`;
   buildTree.append(finalLink, finalBranch);
 
   const ordinal = slot => slot + (slot === 3 ? 'rd' : 'th');

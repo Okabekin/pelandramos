@@ -700,6 +700,16 @@ section h2 {
   color: var(--text-muted);
 }
 
+/* The 6th item is fixed, so its note is always shown rather than only
+   while its column is being actively chosen */
+.build-branch.final-branch .build-note {
+  display: block;
+  width: 360px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
 .build-note strong {
   display: block;
   margin-bottom: 3px;
