@@ -1137,6 +1137,39 @@ section h2 {
   gap: 12px;
 }
 
+.build-boot-expandable {
+  position: relative;
+  cursor: pointer;
+}
+
+.build-boot-icon {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-family: var(--font-head);
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+  transition: color 0.15s, border-color 0.15s, transform 0.15s;
+}
+
+.build-boot-expandable:hover .build-boot-icon,
+.build-boot-expandable:focus-visible .build-boot-icon,
+.build-boot-expandable.open .build-boot-icon {
+  color: var(--violet);
+  border-color: var(--violet);
+}
+
+.build-boot-expandable.open .build-boot-icon {
+  transform: rotate(45deg);
+}
+
 /* Video */
 .video-embed {
   position: relative;
