@@ -91,9 +91,8 @@ if (buildTree) {
           default: "In some games you're so far ahead that you can afford another " +
             "lethality item at 4th slot &ndash; you still deal true damage in those " +
             "scenarios. Profane is a great pick for this.",
-          afterLDR: "In some games you're so far ahead that you can afford a lethality " +
-            "item at 4th slot &ndash; you still deal true damage in those scenarios. " +
-            "Profane is a great pick for this."
+          afterLDR: "Profane still deals true damage, which makes it a great pick for " +
+            "this."
         },
         5: "A solid last option if you want the most damage after IE. The benefit over " +
           "IE is that it's much cheaper, so in some games you can actually use Profane " +
