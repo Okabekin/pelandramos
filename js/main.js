@@ -81,7 +81,9 @@ if (buildTree) {
           afterLDR: "Great as a 4th item option after LDR. The movement speed is always " +
             "nice to have, but can be mandatory into certain comps just so you can " +
             "actually reach them reliably."
-        }
+        },
+        5: "Solid option, the movement speed is really important. It's a cheap item " +
+          "that still gives you solid damage."
       }
     },
     6698: {
