@@ -410,14 +410,28 @@ document.querySelectorAll('.spell-expandable').forEach(item => {
   });
 });
 
-document.querySelectorAll('.champ-expandable').forEach(item => {
+// Accordion: picking a new champion closes whichever one was open before
+const champItems = Array.from(document.querySelectorAll('.champ-expandable'));
+
+champItems.forEach(item => {
   const detail = document.getElementById(item.dataset.detailTarget);
   if (!detail) return;
 
   const toggle = () => {
-    const isOpen = item.classList.toggle('open');
-    detail.classList.toggle('open', isOpen);
-    item.setAttribute('aria-expanded', isOpen);
+    const willOpen = !item.classList.contains('open');
+
+    champItems.forEach(other => {
+      other.classList.remove('open');
+      other.setAttribute('aria-expanded', 'false');
+      const otherDetail = document.getElementById(other.dataset.detailTarget);
+      if (otherDetail) otherDetail.classList.remove('open');
+    });
+
+    if (willOpen) {
+      item.classList.add('open');
+      item.setAttribute('aria-expanded', 'true');
+      detail.classList.add('open');
+    }
   };
 
   item.addEventListener('click', toggle);
