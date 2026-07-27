@@ -409,3 +409,22 @@ document.querySelectorAll('.spell-expandable').forEach(item => {
     }
   });
 });
+
+document.querySelectorAll('.champ-expandable').forEach(item => {
+  const detail = document.getElementById(item.dataset.detailTarget);
+  if (!detail) return;
+
+  const toggle = () => {
+    const isOpen = item.classList.toggle('open');
+    detail.classList.toggle('open', isOpen);
+    item.setAttribute('aria-expanded', isOpen);
+  };
+
+  item.addEventListener('click', toggle);
+  item.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggle();
+    }
+  });
+});
