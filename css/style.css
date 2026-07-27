@@ -688,9 +688,12 @@ section h2 {
    while that column is still being chosen */
 .build-note { display: none; }
 
-/* Keep --row-h at or above the tallest note, otherwise a row grows past it
-   and the trunk no longer lines up with the first and last icon */
+/* Keep --row-h at or above the tallest note in that column, otherwise a row
+   grows past it and the trunk no longer lines up with the first and last
+   icon. The 4th item column needs more room than the 5th (LDR's 4th-item
+   note is the longest note anywhere), so the 5th gets a tighter budget. */
 .build-branch.has-notes:not(.collapsed) { --row-h: 140px; }
+.build-branch.has-notes:not(.collapsed)[data-slot="5"] { --row-h: 122px; }
 
 .build-branch.has-notes:not(.collapsed) .build-note {
   display: block;
