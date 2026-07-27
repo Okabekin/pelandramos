@@ -94,15 +94,26 @@ if (buildTree) {
     },
     3026: {
       name: 'Guardian Angel',
-      notes: { 5: "Similar to Edge of Night, GA is another great defensive option. If I " +
-        "have enough money for a BF Sword, I go for GA. If I don't and can only afford a " +
-        "Serrated Dirk, I go Edge of Night instead." }
+      notes: {
+        4: "GA is great if you're ahead as well. Just like other defensive options in " +
+          "your 4th slot, it can protect you from being shut down and, when you're " +
+          "snowballing, make you feel unkillable. If I can afford a BF Sword, I usually " +
+          "consider buying this defensive option &ndash; it's great into AD damage.",
+        5: "Similar to Edge of Night, GA is another great defensive option. If I " +
+          "have enough money for a BF Sword, I go for GA. If I don't and can only afford a " +
+          "Serrated Dirk, I go Edge of Night instead."
+      }
+    },
+    3156: {
+      name: 'Maw of Malmortius',
+      notes: { 4: "You can also go Maw 4th if you're playing against heavy AP damage as " +
+        "your defensive option." }
     },
     3046: { name: 'Phantom Dancer' }
   };
   // Order also controls display order within a slot: offensive picks first,
   // defensive ones (Edge of Night, Guardian Angel) last
-  const POOL = ['3036', '6694', '3033', '3142', '6698', '3031', '3814', '3026'];
+  const POOL = ['3036', '6694', '3033', '3142', '6698', '3031', '3814', '3026', '3156'];
   const FINAL_ITEM = '3046';   // the 6th slot is fixed, bought by selling boots
 
   const iconUrl = id => `https://ddragon.leagueoflegends.com/cdn/${PATCH}/img/item/${id}.png`;

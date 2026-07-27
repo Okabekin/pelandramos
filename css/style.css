@@ -644,7 +644,7 @@ section h2 {
 
 /* Straight connector between two nodes */
 .build-link {
-  width: 36px;
+  width: 22px;
   height: 2px;
   background: var(--border);
   flex-shrink: 0;
@@ -655,8 +655,8 @@ section h2 {
   --row-h: 52px;   /* every row is this tall, which is what keeps the trunk exact */
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding-left: 36px;
+  gap: 8px;
+  padding-left: 22px;
   /* Vertical trunk, drawn from the first row's centre to the last row's.
      Painted as a background so the branch needs no positioning of its own,
      which keeps the column labels anchored to the top of the tree. */
@@ -677,9 +677,9 @@ section h2 {
 .build-branch-row::before {
   content: "";
   position: absolute;
-  left: -36px;
+  left: -22px;
   top: calc(var(--row-h) / 2);
-  width: 36px;
+  width: 22px;
   height: 2px;
   background: var(--border);
 }
