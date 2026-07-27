@@ -823,7 +823,7 @@ section h2 {
    out of place. */
 .build-optional-inline {
   position: absolute;
-  top: 16px;
+  top: 34px;
   left: 0;
   z-index: 2;
   display: inline-flex;
