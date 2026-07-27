@@ -507,6 +507,67 @@ section h2 {
   font-size: 20px;
 }
 
+.spell-expandable {
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.spell-expandable:hover,
+.spell-expandable:focus-visible {
+  border-color: var(--violet);
+  outline: none;
+}
+
+.spell-toggle-icon {
+  color: var(--text-muted);
+  font-size: 16px;
+  font-family: var(--font-head);
+  transition: transform 0.15s, color 0.15s;
+}
+
+.spell-expandable.open .spell-toggle-icon {
+  transform: rotate(45deg);
+  color: var(--violet);
+}
+
+.spell-detail {
+  display: none;
+  margin-top: 10px;
+}
+
+.spell-detail.open {
+  display: block;
+}
+
+.spell-detail p {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.spell-detail strong {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--text);
+  font-family: var(--font-head);
+  font-size: 14px;
+  letter-spacing: 0.02em;
+}
+
+.spell-note {
+  margin-top: 14px;
+  padding: 14px 18px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.spell-note p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
 /* Ability max order */
 .ability-order-wrap {
   overflow-x: auto;
