@@ -1625,18 +1625,17 @@ section h2 {
 .wo-alt .wo-media::before { display: none; }
 
 .wo-alt-name {
-  margin-top: 12px;
+  margin: 0;
   font-family: var(--font-head);
   font-size: 18px;
   font-weight: 700;
 }
 
-.wo-alt-name small {
-  display: block;
-  margin-top: 2px;
-  font-family: var(--font-body);
-  font-size: 13px;
-  font-weight: 400;
-  letter-spacing: 0;
-  color: var(--text-muted);
+
+.wo-alt-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 12px;
 }
