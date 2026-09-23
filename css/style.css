@@ -1639,3 +1639,50 @@ section h2 {
   gap: 12px;
   margin-top: 12px;
 }
+
+/* Coaching paused: banner, greyed-out booking buttons, notice in the booking section */
+.coaching-banner {
+  padding: 12px 0;
+  background: rgba(255, 92, 114, 0.12);
+  border-bottom: 1px solid rgba(255, 92, 114, 0.35);
+  font-size: 15px;
+  text-align: center;
+}
+
+.coaching-banner strong {
+  color: var(--danger);
+  font-family: var(--font-head);
+  letter-spacing: 0.04em;
+}
+
+.is-disabled,
+.is-disabled:hover {
+  opacity: 0.4;
+  pointer-events: none;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.booking-closed {
+  max-width: 640px;
+  padding: 20px 24px;
+  background: var(--card);
+  border: 1px solid rgba(255, 92, 114, 0.35);
+  border-radius: 14px;
+}
+
+.booking-closed-title {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--danger);
+  font-family: var(--font-head);
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.booking-closed p {
+  color: var(--text-muted);
+  line-height: 1.6;
+}

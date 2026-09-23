@@ -23,11 +23,17 @@
       <li><a href="#about">About</a></li>
       <li><a href="/guides/">Guides</a></li>
       <li><a href="#coaching">Coaching</a></li>
-      <li><a href="#buchen" class="nav-cta">Book</a></li>
+      <li><a href="#buchen" class="nav-cta is-disabled" aria-disabled="true" tabindex="-1">Book</a></li>
       <li><a href="#kontakt">Contact</a></li>
     </ul>
   </nav>
 </header>
+
+<div class="coaching-banner" role="status">
+  <div class="container">
+    <strong>Coaching is currently paused.</strong> I'm not in the mood for coaching right now &ndash; please try again later!
+  </div>
+</div>
 
 <main>
 
@@ -38,7 +44,7 @@
       <h1>Mad Scientist <span>Shaco</span></h1>
       <p class="hero-subtitle">High-Elo AD Shaco One-Trick &middot; Peak Challenger &middot; 2500 LP</p>
       <div class="hero-actions">
-        <a href="#buchen" class="btn btn-primary">Book Coaching</a>
+        <a href="#buchen" class="btn btn-primary is-disabled" aria-disabled="true" tabindex="-1">Book Coaching</a>
         <a href="https://twitch.tv/madscientistshaco" target="_blank" rel="noopener" class="btn btn-ghost">Watch on Twitch</a>
       </div>
     </div>
@@ -112,7 +118,7 @@
           <li>Before we get into gameplay, we'll talk about why you booked the session in the first place: what specifically you want to work on, where you feel stuck, and what your biggest frustrations with the champion are.</li>
         </ul>
 
-        <a href="#buchen" class="btn btn-primary package-cta">Book Now</a>
+        <a href="#buchen" class="btn btn-primary package-cta is-disabled" aria-disabled="true" tabindex="-1">Book Now</a>
       </div>
     </div>
   </section>
@@ -120,13 +126,11 @@
   <section id="buchen" class="booking">
     <div class="container">
       <h2>Book a Session</h2>
-      <p class="section-lead">
-        Pick a time that works for you — the call takes place over Discord. You can book
-        directly here, or we can just talk on Discord about a time that works for both of us.
-      </p>
+      <p class="section-lead">Bookings are closed for now.</p>
 
-      <div class="calendar-embed">
-        <iframe src="https://cal.eu/okabekin/ad-shaco-coaching" width="100%" height="700" frameborder="0"></iframe>
+      <div class="booking-closed">
+        <strong class="booking-closed-title">Coaching is currently paused</strong>
+        <p>Currently I'm not in the mood for coaching, so you can't book a session right now. Please try again later!</p>
       </div>
     </div>
   </section>
